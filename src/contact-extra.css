@@ -1,0 +1,65 @@
+/* ─────────────────────────────────────────────────────────────────
+   CONTACT FORM — extra states
+   Add these rules to the bottom of your App.css
+───────────────────────────────────────────────────────────────── */
+
+/* reCAPTCHA wrapper — gives it breathing room */
+.ct-recaptcha-wrap {
+  margin-bottom: 20px;
+}
+
+/* Inline error message */
+.ct-error-msg {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #c30c19;
+  margin-bottom: 14px;
+  padding: 10px 14px;
+  background: rgba(195, 12, 25, 0.06);
+  border-left: 3px solid #c30c19;
+}
+
+/* Success state box */
+.ct-success-box {
+  padding: 8px 0 24px;
+}
+
+.ct-success-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  background: #231f20;
+  color: #fff;
+  font-size: 22px;
+  border-radius: 50%;
+  margin-bottom: 18px;
+}
+
+.ct-success-msg {
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: #231f20;
+  max-width: 380px;
+}
+
+/* Disabled state for inputs while submitting */
+.ct-form input:disabled,
+.ct-form textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Send button loading state */
+.send-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.send-btn:disabled:hover {
+  background: transparent;
+  color: var(--dark);
+}
