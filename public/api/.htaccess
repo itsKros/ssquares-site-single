@@ -1,0 +1,12 @@
+# Block direct HTTP access to .env files
+<FilesMatch "^\.env">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # Pass the Authorization header through to PHP (Apache strips it by default)
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+    RewriteRule .* - [E=REDIRECT_HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+</IfModule>

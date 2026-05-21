@@ -5,8 +5,11 @@
  * Verifies reCAPTCHA v2 via cURL
  */
 
+require __DIR__ . '/config.php';
+
 // -- CORS ----------------------------------------------------------
-header("Access-Control-Allow-Origin: https://www.ssquares.co.in");
+$corsOrigin = env('CORS_ORIGIN', 'https://www.ssquares.co.in');
+header("Access-Control-Allow-Origin: $corsOrigin");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json; charset=UTF-8");
@@ -16,13 +19,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 
-// -- CONFIG --------------------------------------------------------
-define('RECAPTCHA_SECRET',    'YOUR_RECAPTCHA_SECRET');       // <- reCAPTCHA secret
-define('CLIENT_ID',           'YOUR_CLIENT_ID');            // <- from Google Cloud Console
-define('CLIENT_SECRET',       'YOUR_CLIENT_SECRET');
-define('GMAIL_REFRESH_TOKEN', 'YOUR_GMAIL_REFRESH_TOKEN');              // <- paste from oauth-callback.php
-define('GMAIL_FROM',          'YOUR_GMAIL_FROM');            // <- the Gmail you authorized
-define('TO_EMAIL',            'YOUR_TO_EMAIL');            // <- where to receive emails
+// -- CONFIG (loaded from .env via config.php) ----------------------
+define('RECAPTCHA_SECRET',    env('RECAPTCHA_SECRET'));
+define('CLIENT_ID',           env('GMAIL_CLIENT_ID'));
+define('CLIENT_SECRET',       env('GMAIL_CLIENT_SECRET'));
+define('GMAIL_REFRESH_TOKEN', env('GMAIL_REFRESH_TOKEN'));
+define('GMAIL_FROM',          env('GMAIL_FROM'));
+define('TO_EMAIL',            env('TO_EMAIL'));
 
 // -- GET = health check --------------------------------------------
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
